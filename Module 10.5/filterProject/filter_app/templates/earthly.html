@@ -1,0 +1,304 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthly - Filtering Project</title>
+    <link rel="stylesheet" href=" {% static 'bootstrap-5/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+</head>
+<body>
+    
+    {% include 'nav-bar.html' %}
+
+    <h1 class="mt-5 d-flex justify-content-center">These filtering from 
+        <a class="ms-4" href="http://earthly.dev/blog/django-template-filters/" target="_blank" >
+            Earthly
+        </a>
+    </h1>
+
+    <div class="container row my-5 mx-auto">
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Join Filter: </span>
+            <br>
+            <p>
+                1. If the value is the list **['a', 'b', 'c']**, the output will be \ the string **"a - b - c"**.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ list1 | join:" - " }}
+                    {% endverbatim %}
+                    : {{ list1 | join:" - " }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                2. If the value is the list **['python', 'is', 'fun']**, the output will be \ the string **"python - is - fun"**.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ list2 | join:" - " }}
+                    {% endverbatim %}
+                    : {{ list2 | join:" - " }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                3. If the value is the list **['Monday', 'Tuesday', 'Wednesday']**, the output will be \ the string **"Monday // Tuesday // Wednesday"**.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ list3 | join:" // " }}
+                    {% endverbatim %}
+                    : {{ list3 | join:" // " }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Date Filter: </span>
+            <br>
+            <p>
+                1. If value is a datetime object (for example, the result of datetime.datetime.now()) OR 2022-12-12T10:30:00.000123, the output will be the string '01/12/2023'.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ dateTimeStr | date:"SHORT_DATE_FORMAT" }}
+                    {% endverbatim %}
+                    : {{ dateTimeStr | date:"SHORT_DATE_FORMAT" }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                2. If value is a datetime object (for example, the result of datetime.datetime.now()) OR 2022-12-12T10:30:00.000123, the output will be the string 'Dec. 12, 2022'.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ dateTimeStr | date }}
+                    {% endverbatim %}
+                    : {{ dateTimeStr | date }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                3. If value is a datetime object (for example, the result of datetime.datetime.now()) OR 2022-12-12T10:30:00.000123, the output will be the string "Sun 12 Jan 2023".
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                    {{ dateTimeStr | date:"D d M Y" }}
+                    {% endverbatim %}
+                    : {{ dateTimeStr | date:"D d M Y" }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Default Filter: </span>
+            <br>
+            <p>
+                1. If the value is " " (the empty string), the output will be  "an empty string".
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ emptyStr | default:"an empty string" }}
+                    {% endverbatim %}
+                    : {{ emptyStr | default:"an empty string" }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                2. If the value is " " (the empty string), the output will be "This is a default value".
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ emptyStr | default:"This is a default value" }}
+                    {% endverbatim %}
+                    : {{ emptyStr | default:"This is a default value" }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Add Filter: </span>
+            <br>
+            <p>
+                1. If the value is 10, then the output will be 15. This filter is used to increment a variable in Django templates by adding a constant value to the variable.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ num | add:"5" }}
+                    {% endverbatim %}
+                    : {{ num | add:"5" }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                2. If the value is [1, 2, 3], then the output will be [1, 2, 3, 4, 5, 6]. This filter is used to increment a variable in Django templates by adding a constant value to the variable.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ list4 | add:"[4, 5, 6]" }}
+                    {% endverbatim %}
+                    : {{ list4 | add:"[4, 5, 6]" }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Capfirst Filter: </span>
+            <br>
+            <p>
+                1. If the value is “earthly”, the output will be “Earthly”.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ st1 | capfirst }}
+                    {% endverbatim %}
+                    : {{ st1 | capfirst }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                2. If the value is “django”, the output will be “Django”.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ st2 | capfirst }}
+                    {% endverbatim %}
+                    : {{ st2 | capfirst }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Cut Filter: </span>
+            <br>
+            <p>
+                1. If the value is “Python is Fun”, the output will be “PythonisFun”, the filter has cut out spaces from the value.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ st3 | cut:" " }}
+                    {% endverbatim %}
+                    : {{ st3 | cut:" " }}.
+                </span>
+            </p>
+            <br>
+            <p>
+                2. If the value is “January - February - March”, the output will be “January February March”, the filter has cut out spaces from the value.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ st4 | cut:"-" }}
+                    {% endverbatim %}
+                    : {{ st4 | cut:"-" }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Dictsort Filter: </span>
+            <br>
+            <p>
+                1. If the value is:
+                <pre>
+                    [
+                        {'name': 'Josh', 'age': 19},
+                        {'name': 'Dave', 'age': 22},
+                        {'name': 'Joe', 'age': 31},
+                    ]
+                </pre>
+                Then the output would be:
+                <pre>
+                    [
+                        {'name': 'Dave', 'age': 22},
+                        {'name': 'Joe', 'age': 31},
+                        {'name': 'Josh', 'age': 19},
+
+                    ]
+                </pre>
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ list5 | dictsort:"name" }}
+                    {% endverbatim %}
+                    : {{ list5 | dictsort:"name" }}.
+                </span>
+            </p>
+        </h3>
+        
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Timesince Filter: </span>
+            <br>
+            <p>
+                1. If publication_date is a date instance representing midnight on 1 July 2024, and comment_date is a date instance for 09:00 on 1 July 2024, then the output would be “9 hours 9 minute”.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ publication_date | timesince:comment_date }}
+                    {% endverbatim %}
+                    : {{ publication_date | timesince:comment_date }}.
+                </span>
+            </p>
+            <p>
+                2. If publication_date is a date instance representing midnight on 1 July 2024, and without the argument, the comparison point is now.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ publication_date | timesince }}
+                    {% endverbatim %}
+                    : {{ publication_date | timesince }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Truncatechars Filter: </span>
+            <br>
+            <p>
+                1. If the value is “Moe is a slug”, the output will be “Moe is…”.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ st5 | truncatechars:7 }}
+                    {% endverbatim %}
+                    : {{ st5 | truncatechars:7 }}.
+                </span>
+            </p>
+        </h3>
+        
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Wordcount Filter: </span>
+            <br>
+            <p>
+                1. If the value is “Moe is a cat”, the output will be 4.
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ st6 | wordcount }}
+                    {% endverbatim %}
+                    : {{ st6 | wordcount }}.
+                </span>
+            </p>
+        </h3>
+
+        <h3 class="card p-3 col-12 my-2 border-0 shadow">
+            <span class="text-info">Truncatewords Filter: </span>
+            <br>
+            <p>
+                1. If the value is "You can build web apps with python and Django", the output will be "You can build web...".
+                <br><br>
+                <span class="bg-danger-subtle p-2 rounded">
+                    {% verbatim %}
+                        {{ st7 | truncatewords:4 }}
+                    {% endverbatim %}
+                    : {{ st7 | truncatewords:4 }}.
+                </span>
+            </p>
+        </h3>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeeksforGeeks - Filtering Project</title>
+    <link rel="stylesheet" href=" {% static 'bootstrap-5/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+</head>
+<body>
+
+    {% include 'nav-bar.html' %}
+
+    <h1 class="mt-5 d-flex justify-content-center">These filtering from 
+        <a class="ms-4" href="http://www.geeksforgeeks.org/django-template-filters/" target="_blank" >
+            GeeksforGeeks
+        </a>
+    </h1>
+
+    <div class="container row my-5 mx-auto">
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"><span style="color: red;">###</span>
+            It is used to add an argument to the value. <br>
+            If value is 18, then the output will be 20 
+            {% verbatim %}
+            <span>{{ value=20 | add:"2" }}</span>
+            {% endverbatim %}
+            : {{ num | add:"2" }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to add slashes before quotes. Useful for escaping strings in CSV.. <br>
+            If value is “I’m Jai”, the output will be “I\’m Jai”.
+            {% verbatim %}
+            <span>{{ value | addslashes }}</span>
+            {% endverbatim %}
+            : {{ st | addslashes }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to capitalize the first character of the value. If the first character is not a letter, this filter has no effect.
+            <br>
+            If value is “jai”, the output will be “Jai”.
+            {% verbatim %}
+            <span>{{ value | capfirst }}</span>
+            {% endverbatim %}
+            : {{ st2 | capfirst }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to center the value in a field of a given width.
+            <br>
+            If value is “Jai”, the output will be ” Jai “.
+            {% verbatim %}
+            <span>{{ value | center:"15" }}</span>
+            {% endverbatim %}
+            : {{ st3 | center:"15" }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to remove all values of arg from the given string.
+            <br>
+            If value is “String with spaces”, the output will be “Stringwithspaces”.
+            {% verbatim %}
+            <span>{{ value | cut:" " }}</span>
+            {% endverbatim %}
+            : {{ st4 | cut:" " }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to format a date according to the given format.
+            <br>
+            If value is a datetime object (e.g., the result of datetime.datetime.now()), the output will be the string ‘Thu 06 Feb 2020’.
+            {% verbatim %}
+            <span>{{ value | date:"D d M Y" }}</span>
+            {% endverbatim %}
+            : {{ dateTime | date:"D d M Y" }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to give a default value to a variable. If variable evaluates to False, it will use the default argument given else the variable value itself.
+            <br>
+            If value is “” (the empty string), the output will be nothing.
+            {% verbatim %}
+            <span>{{ value | default:"nothing" }}</span>
+            {% endverbatim %}
+            : {{ st6 | default:"nothing" }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It takes a list of dictionaries and returns that list sorted by the key given in the argument.
+            <br>
+            If value is:
+            <pre>
+                [
+                    {'name': 'zed', 'age': 19},
+                    {'name': 'amy', 'age': 22},
+                    {'name': 'joe', 'age': 31},
+                ]
+            </pre>
+            then the output would be:
+            <pre>
+                [
+                    {'name': 'amy', 'age': 22},
+                    {'name': 'joe', 'age': 31},
+                    {'name': 'zed', 'age': 19},
+                ] 
+            </pre>
+            {% verbatim %}
+            <span>{{ value | dictsort:"name" }}</span>
+            {% endverbatim %}
+            : {{ dict | dictsort:"name" }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It returns True if the value is divisible by the argument. 
+            <br>
+            If value is 21, the output would be True.
+            {% verbatim %}
+            <span>{{ value | divisibleby:"3" }}</span>
+            {% endverbatim %}
+            : {{ num2 | divisibleby:"3" }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to format the value like a ‘human-readable’ file size (i.e. ’13 KB’, ‘4.1 MB’, ‘102 bytes’, etc.).
+            <br>
+            If value is 123456789, the output would be 117.7 MB.
+            {% verbatim %}
+            <span>{{ value | filesizeformat }}</span>
+            {% endverbatim %}
+            : {{ fileSize | filesizeformat }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to return the first item in a list.
+            <br>
+            If value is the list [‘a’, ‘b’, ‘c’], the output will be ‘a’.
+            {% verbatim %}
+            <span>{{ value | first }}</span>
+            {% endverbatim %}
+            : {{ list1 | first }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to join a list with a string, like Python’s str.join(list)
+            <br>
+            If value is the list [‘a’, ‘b’, ‘c’], the output will be the string “a // b // c”.
+            {% verbatim %}
+            <span>{{ value | join:" // " }}</span>
+            {% endverbatim %}
+            : {{ list1 | join:" // " }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to return the last item in a list. 
+            <br>
+            If value is the list [‘a’, ‘b’, ‘c’], the output will be the string 'c'
+            {% verbatim %}
+            <span>{{ value | last }}</span>
+            {% endverbatim %}
+            : {{ list1 | last }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to return the length of the value. This works for both strings and lists.
+            <br>
+            If value is [‘a’, ‘b’, ‘c’] or “abc”, the output will be 3.
+            {% verbatim %}
+            <span>{{ value | length }}</span>
+            {% endverbatim %}
+            : {{ list1 | length }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span> It is used to display text with line numbers.
+            <br>
+            If value is:
+            <pre>
+                one
+                two
+                three
+            </pre>
+            the output will be:
+            <pre>
+                1. one
+                2. two
+                3. three
+            </pre>
+            {% verbatim %}
+            <span>{{ value | linenumbers  }}</span>
+            {% endverbatim %}
+            : {{ st7 | linenumbers  }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to converts a string into all lowercase.
+            <br>
+            If value is My Name is Jai, the output will be my name is jai.
+            
+            {% verbatim %}
+            <span>{{ value | lower  }}</span>
+            {% endverbatim %}
+            : {{ st8 | lower  }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to return the value turned into a list. For a string, it’s a list of characters. For an integer, the argument is cast to a string before creating a list. 
+            <br>
+            If value is the string “Naveen”, the output would be the list [‘N’, ‘a’, ‘v’, ‘e’, ‘e’, ‘n’]. If value is 123, the output will be the list [‘1’, ‘2’, ‘3’].
+            
+            {% verbatim %}
+            <span>{{ value | make_list  }}</span>
+            {% endverbatim %}
+            : {{ st9 | make_list  }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to return the value turned into a list. For a string, it’s a list of characters. For an integer, the argument is cast to a string before creating a list. 
+            <br>
+            If value is the list [‘a’, ‘b’, ‘c’, ‘d’], the output could be “b”.
+            
+            {% verbatim %}
+            <span>{{ value | random  }}</span>
+            {% endverbatim %}
+            : {{ list1 | random  }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to return a slice of the list. 
+            <br>
+            If some_list is [‘a’, ‘b’, ‘c’], the output will be [‘a’, ‘b’].
+            
+            {% verbatim %}
+            <span>{{ value | slice:":2"  }}</span>
+            {% endverbatim %}
+            : {{ list1 | slice:":2"  }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to convert to ASCII. It converts spaces to hyphens and removes characters that aren’t alphanumerics, underscores, or hyphens. Converts to lowercase. Also strips leading and trailing whitespace.
+            <br>
+            If value is “ Jai_/ is a slug ”, the output will be “jai-is-a-slug”.
+            
+            {% verbatim %}
+            <span>{{ value | slugify  }}</span>
+            {% endverbatim %}
+            : {{ list1 | slugify  }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to format a time according to the given format.
+            <br>
+            If value is equivalent to datetime.datetime.now(), the output will be the string “01:23”.
+            
+            {% verbatim %}
+            <span>{{ value | time:"H:i" }}</span>
+            {% endverbatim %}
+            : {{ dateTime | time:"H:i" }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to convert a string into titlecase by making words start with an uppercase character and the remaining characters lowercase. This filter makes no effort to keep “trivial words” in lowercase.
+            <br>
+            If value is “my FIRST post”, the output will be “My First Post”.
+            
+            {% verbatim %}
+            <span>{{ value  | title }}</span>
+            {% endverbatim %}
+            : {{ st5 | title }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to recursively take a self-nested list and returns an HTML unordered list – WITHOUT opening and closing <ul> tags.
+            <br>
+            if var contains [‘States’, [‘Kansas’, [‘Lawrence’, ‘Topeka’], ‘Illinois’]], then {{ var|unordered_list }} would return: 
+            <img class="my-2 d-block" src=" {% static 'img/htmlCode.png' %} " alt="">
+            <br>
+            <span class="my-3 d-block">
+                {% verbatim %}
+                {{ value  | unordered_list }}:
+                {% endverbatim %}
+            </span><br>
+            <textarea class="ms-5 p-4 fixed-textarea htmlList" name="htmlList" placeholder="{{ list2 | unordered_list }}" readonly></textarea>
+
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to convert a string into all uppercase.
+            <br>
+            If value is “My Name is Jai”, the output will be “MY NAME IS JAI”.
+            
+            {% verbatim %}
+            <span>{{ value  | upper }}</span>
+            {% endverbatim %}
+            : {{ st8 | upper }}.
+        </h3>
+        <h3 class="card p-3 col-12 my-2 border-0 shadow"> <span style="color: red;">###</span>
+            It is used to return the number of words.
+            <br>
+            If value is “jai is a slug”, the output will be 4.
+            
+            {% verbatim %}
+            <span>{{ value  | wordcount }}</span>
+            {% endverbatim %}
+            : {{ st8 | wordcount }}.
+        </h3>
+
+    </div>
+
+</body>
+</html>

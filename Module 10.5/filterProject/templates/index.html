@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Filtering Project</title>
+    <link rel="stylesheet" href=" {% static 'bootstrap-5/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+</head>
+<body>
+    
+    
+    {% include 'nav-bar.html' %}
+
+    <h1 class="d-flex mt-5 justify-content-center">
+        This is a Django templates filtering Project.
+    </h1>
+
+    <script type="text/javascript" src="{% static 'bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
