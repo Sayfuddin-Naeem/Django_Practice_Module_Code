@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}GeeksforGeeks Form Format{% endblock title %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+    
+    <h1 class="text-center my-5">
+        These form taken from
+        <a href="https://www.geeksforgeeks.org/django-forms/">GeeksforGeeks</a>
+    </h1>
+
+    <div class="w-50 mx-auto my-5" >
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form | crispy}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+{% endblock content %}

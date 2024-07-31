@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %} - Filtering Project</title>
+    <link rel="stylesheet" href=" {% static 'bootstrap-5/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+</head>
+<body>
+    
+    
+    {% include 'nav-bar.html' %}
+
+    {% block content %}
+    {% endblock content %}
+
+    <script type="text/javascript" src="{% static 'bootstrap-5/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
