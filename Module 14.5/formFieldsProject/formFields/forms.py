@@ -1,5 +1,4 @@
 from django import forms
-# from django.core import validators
 from django.forms.widgets import *
 import datetime
 
@@ -13,10 +12,6 @@ class GeeksforgeeksForm(forms.Form):
                     ) 
     password = forms.CharField(widget = forms.PasswordInput()) 
 
-
-def len_check(text):
-    if len(text) < 10:
-        raise forms.ValidationError('Text lenght at least 10 charecters')
 
 class OrdinaryCodersForm(forms.Form):
     name = forms.CharField()
@@ -50,23 +45,5 @@ class OrdinaryCodersForm(forms.Form):
     favorite_colors = forms.MultipleChoiceField(choices=FAVORITE_COLORS_CHOICES)
     favorite_colors2 = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=FAVORITE_COLORS_CHOICES,)
     
-    
-    
-
-# class PasswordValidationProject(forms.Form):
-#     name = forms.CharField(widget=forms.TextInput)
-#     password = forms.CharField(widget=forms.PasswordInput)
-#     confirm_password = forms.CharField(widget=forms.PasswordInput)
-    
-#     def clean(self):
-#         cleaned_data = super().clean()
-#         valName = self.cleaned_data['name']
-#         valPassword = self.cleaned_data['password']
-#         valConPassword = self.cleaned_data['confirm_password']
-        
-#         if len(valName) < 10:
-#             raise forms.ValidationError("Enter a name with at list 10 charecters")
-#         if valPassword != valConPassword:
-#             raise forms.ValidationError("Password dosen't match !")
     
     

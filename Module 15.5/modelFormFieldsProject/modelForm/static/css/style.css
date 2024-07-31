@@ -1,0 +1,17 @@
+.nav-item:hover{
+    background-color: rgb(248, 205, 210) !important;
+}
+
+.nav-link{
+    letter-spacing: 2px;
+}
+
+.htmlList{
+    width: 60%;
+    height: 430px;
+    resize: none;
+}
+
+h3 p{
+    text-align: justify;
+}
