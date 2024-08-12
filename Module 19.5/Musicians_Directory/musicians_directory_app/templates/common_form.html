@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{type}} - {% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="card shadow border-0 w-50 px-5 pt-2 pb-4 mx-auto my-5">
+        <h1 class="text-center mt-3 mb-5">{{type}} Page</h1>
+        {% if delete %}
+        <h3 class="bg-dark-subtle rounded px-2 py-4 mb-5 text-danger text-center">{{delete}}</h3>
+        {% endif %}
+        <form class="mx-auto" action="" method="POST" novalidate>
+            {% csrf_token %}
+            {{form | crispy}}
+
+            <button class="btn btn-{{bg}}" type="submit">{{type}}</button>
+        </form>
+    </div>
+
+{% endblock content %}
