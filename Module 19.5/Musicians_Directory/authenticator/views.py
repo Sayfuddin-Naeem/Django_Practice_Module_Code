@@ -13,7 +13,9 @@ class SignupFormView(CreateView):
     model = User
     form_class = RegisterForm
     template_name = 'sign_up.html'
-    success_url = 'login'
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy('login')
     
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
