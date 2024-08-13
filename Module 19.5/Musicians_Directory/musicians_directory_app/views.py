@@ -102,9 +102,9 @@ class AlbumDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('profile')
     pk_url_kwarg = 'id'
     
-    def delete(self, request, *args, **kwargs):
+    def get_success_url(self):
         messages.success(self.request, 'Album deleted successfully')
-        return super().delete(request, *args, **kwargs)
+        return reverse_lazy('profile')
     
     def get_context_data(self, **kwargs) -> dict:
         context = super().get_context_data(**kwargs)

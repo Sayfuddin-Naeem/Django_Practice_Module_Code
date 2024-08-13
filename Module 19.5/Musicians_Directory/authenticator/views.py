@@ -13,7 +13,7 @@ class SignupFormView(CreateView):
     model = User
     form_class = RegisterForm
     template_name = 'sign_up.html'
-    success_url = 'signup'
+    success_url = 'login'
     
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
