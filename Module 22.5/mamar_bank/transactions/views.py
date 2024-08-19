@@ -29,15 +29,6 @@ from .constants import (
 
 # Create your views here.
 
-def send_transaction_email(user, subject, amount, template):
-    message = render_to_string(template, {
-        'user' : user,
-        'amount' : amount,
-    })
-    send_email = EmailMultiAlternatives(subject, '', to=[user.email])
-    send_email.attach_alternative(message, 'text/html')
-    send_email.send()
-
 class TransactionCreateMixin(LoginRequiredMixin, CreateView):
     model = Transaction
     template_name = 'transactions/transaction_form.html'
@@ -75,7 +66,6 @@ class DepositMoneyView(TransactionCreateMixin):
         )
         
         messages.success(self.request, f'{amount}$ was deposited to your account successfully')
-        send_transaction_email(self.request.user, "Deposite Message", amount, "transactions/deposit_email.html")
         
         return super().form_valid(form)
     
@@ -101,8 +91,6 @@ class WithdrawaMoneyView(TransactionCreateMixin):
         
         messages.success(self.request, f'Successfully withdrawn {amount}$ from your account')
         
-        send_transaction_email(self.request.user, "Withdrawal Message", amount, "transactions/withdrawal_email.html")
-        
         return super().form_valid(form)
     
 class LoanRequestView(TransactionCreateMixin):
@@ -121,8 +109,6 @@ class LoanRequestView(TransactionCreateMixin):
             return HttpResponse("You have crossed your limits")
         
         messages.success(self.request, f'Loan request for amount {amount}$ has been successfully sent to admin')
-        
-        send_transaction_email(self.request.user, "Loan Request Message", amount, "transactions/loan_request_email.html")
         
         return super().form_valid(form)
 
